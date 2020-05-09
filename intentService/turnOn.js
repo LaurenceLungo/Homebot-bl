@@ -1,7 +1,7 @@
 module.exports = {
     turnOnService: function(params, res) {
         
-        const {channel} = params;
+        const channel = params.channel || [];
         let reply = "Channel";
 
         channel.forEach(element => {
@@ -11,7 +11,7 @@ module.exports = {
         
         var speechResponse = {
             google: {
-            expectUserResponse: false,
+            expectUserResponse: true,
             richResponse: {
                 items: [
                 {

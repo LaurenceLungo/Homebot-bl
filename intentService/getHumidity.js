@@ -5,7 +5,7 @@ module.exports = {
         
         var speechResponse = {
             google: {
-            expectUserResponse: false,
+            expectUserResponse: true,
             richResponse: {
                 items: [
                 {

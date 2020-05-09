@@ -24,42 +24,42 @@ restService.get("/", function(req, res) {
 
 restService.post("/dialog", function(req, res) {
 
-    const intent = req.body.queryResult.intent.displayName || '';
-    const params = req.body.queryResult.parameters || {};
+  const intent = req.body.queryResult.intent.displayName || '';
+  const params = req.body.queryResult.parameters || {};
 
-    console.log("<> req: ", req.body);
-    console.log("<> intent: ", intent);
-    console.log("<> params: ", params);
+  console.log("<> req: ", JSON.stringify(req.body));
+  console.log("<> intent: ", JSON.stringify(intent));
+  console.log("<> params: ", JSON.stringify(params));
 
-    switch (intent) {
-        case 'get_temp':
-            return getTempService(params, res);
-        case 'get_humidity':
-            return getHumidityService(params, res);
-        case 'get_system_status':
-            return getSystemStatusService(params, res);
-        case 'turn_on':
-            return turnOnService(params, res);
-        case 'turn_off':
-            return turnOffService(params, res);
-    }
-  
-    // fallback
-    const fallback = "Something's wrong, I can feel it";
-    var speechResponse = {
-        google: {
-        expectUserResponse: false,
-        richResponse: {
-            items: [
-            {
-                simpleResponse: {
-                textToSpeech: fallback
-                }
-            }
-            ]
-        }
-        }
-    };
+  switch (intent) {
+      case 'get_temp':
+          return getTempService(params, res);
+      case 'get_humidity':
+          return getHumidityService(params, res);
+      case 'get_system_status':
+          return getSystemStatusService(params, res);
+      case 'turn_on':
+          return turnOnService(params, res);
+      case 'turn_off':
+          return turnOffService(params, res);
+  }
+
+  // fallback
+  const fallback = "Something's wrong, I can feel it";
+  var speechResponse = {
+      google: {
+      expectUserResponse: false,
+      richResponse: {
+          items: [
+          {
+              simpleResponse: {
+              textToSpeech: fallback
+              }
+          }
+          ]
+      }
+      }
+  };
   
   return res.json({
     payload: speechResponse,
