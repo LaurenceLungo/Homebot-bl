@@ -27,6 +27,10 @@ restService.post("/dialog", function(req, res) {
     const intent = req.body.queryResult.intent.displayName || '';
     const params = req.body.queryResult.parameters || {};
 
+    console.log("<> req: ", req.body);
+    console.log("<> intent: ", intent);
+    console.log("<> params: ", params);
+
     switch (intent) {
         case 'get_temp':
             return getTempService(params, res);
@@ -68,5 +72,5 @@ restService.post("/dialog", function(req, res) {
 
 let port = process.env.PORT || 8000;
 restService.listen(port, function() {
-  console.log("Homebot-bl listening port", port);
+  console.log("<> Homebot-bl listening port", port);
 });

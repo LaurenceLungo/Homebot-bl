@@ -4,7 +4,6 @@ module.exports = {
         const {channel} = params;
         let reply = "Channel";
 
-        console.log(params)
         channel.forEach(element => {
             reply = reply.concat(" ", element);
         });
