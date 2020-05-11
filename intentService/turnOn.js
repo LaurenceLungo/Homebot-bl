@@ -1,14 +1,14 @@
-require('dotenv').config();
+const datastore = require('../ultility/datastore');
 const axios = require('axios');
 
 module.exports = {
-    turnOnService: function(req_params, res) {
+    turnOnService: async function(req_params, res) {
         
         req_params.channel.forEach(channel => axiosTurnOn(channel));
 
 
-        function axiosTurnOn(channel) {
-            const url = 'http://blynk-cloud.com/' + process.env.BLYNK_AUTH_TOKEN + '/update/V' + (parseInt(channel)-1).toString()
+        async function axiosTurnOn(channel) {
+            const url = 'http://blynk-cloud.com/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/update/V' + (parseInt(channel)-1).toString()
             axios.get(url, {
                 params: {
                     value: '1'

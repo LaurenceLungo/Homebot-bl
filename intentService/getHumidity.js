@@ -1,11 +1,11 @@
-require('dotenv').config();
+const datastore = require('../ultility/datastore');
 const axios = require('axios');
 
 module.exports = {
-    getHumidityService: function(params, res) {
+    getHumidityService: async function(params, res) {
 
-        function getHumidityValue() {
-            return axios.get('http://blynk-cloud.com/' + process.env.BLYNK_AUTH_TOKEN + '/get/V9')
+        async function getHumidityValue() {
+            return axios.get('http://blynk-cloud.com/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/get/V9')
             .then(response => {
                 return response.data[0];
             })
