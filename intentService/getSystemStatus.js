@@ -1,12 +1,12 @@
+require('dotenv').config();
+
 module.exports = {
     getSystemStatusService: function(params, res) {
         
         const reply = 
             [
-                "Current temperature is -273K",
-                "Current humidity is 93%",
-                "Channel 1 is on",
-                "Channel 2, 3, 4, 5 are off"
+                "I'm too lazy to implement this function",
+                "What you gonna do about it?"
             ]
         
         var speechResponse = {
@@ -14,11 +14,16 @@ module.exports = {
             expectUserResponse: true,
             richResponse: {
                 items: [
-                {
-                    simpleResponse: {
-                    textToSpeech: reply
+                    {
+                        simpleResponse: {
+                            textToSpeech: reply[0],
+                        }
+                    },
+                    {
+                        simpleResponse: {
+                            textToSpeech: reply[1],
+                        }
                     }
-                }
                 ]
             }
             }
@@ -26,9 +31,9 @@ module.exports = {
     
         return res.json({
             payload: speechResponse,
-            fulfillmentText: reply,
-            speech: reply,
-            displayText: reply,
+            // fulfillmentText: reply,
+            // speech: reply,
+            // displayText: reply,
             source: "Homebot-bl"
         });
     }

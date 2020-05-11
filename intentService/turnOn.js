@@ -1,7 +1,22 @@
+require('dotenv').config();
+const axios = require('axios');
+
 module.exports = {
-    turnOnService: function(params, res) {
+    turnOnService: function(req_params, res) {
         
-        const channel = params.channel || [];
+        req_params.channel.forEach(channel => axiosTurnOn(channel));
+
+
+        function axiosTurnOn(channel) {
+            const url = 'http://blynk-cloud.com/' + process.env.BLYNK_AUTH_TOKEN + '/update/V' + (parseInt(channel)-1).toString()
+            axios.get(url, {
+                params: {
+                    value: '1'
+                }
+            })
+        }
+
+        const channel = req_params.channel || [];
         let reply = "Channel";
 
         channel.forEach(element => {
