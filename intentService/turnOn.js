@@ -7,17 +7,18 @@ module.exports = {
         
         req_params.channel.forEach(channel => axiosTurnOn(channel));
 
+        async function axiosTurnOn(channel) {
+            const url = 'https://api.yocto.hk/blynk/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/update/V' + (parseInt(channel)-1).toString()
+            axios.get(url, {
+                params: {
+                    value: '1'
+                }
+            })
+        }
+
         const [ isHardwareConnected, hardwareDisconnectedMessage ] = await hardwareHealthCheck();
 
         if (isHardwareConnected) {
-            async function axiosTurnOn(channel) {
-                const url = 'https://api.yocto.hk/blynk/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/update/V' + (parseInt(channel)-1).toString()
-                axios.get(url, {
-                    params: {
-                        value: '1'
-                    }
-                })
-            }
 
             const channel = req_params.channel || [];
             let reply = "Channel";
