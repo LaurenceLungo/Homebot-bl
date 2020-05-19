@@ -8,7 +8,7 @@ module.exports = {
 
 
         async function axiosTurnOff(channel) {
-            const url = 'http://blynk-cloud.com/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/update/V' + (parseInt(channel)-1).toString()
+            const url = 'https://api.yocto.hk/blynk/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/update/V' + (parseInt(channel)-1).toString()
             axios.get(url, {
                 params: {
                     value: '0'

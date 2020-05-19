@@ -5,7 +5,7 @@ module.exports = {
     getHumidityService: async function(params, res) {
 
         async function getHumidityValue() {
-            return axios.get('http://blynk-cloud.com/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/get/V9')
+            return axios.get('https://api.yocto.hk/blynk/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/get/V9')
             .then(response => {
                 return response.data[0];
             })

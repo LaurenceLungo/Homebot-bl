@@ -1,4 +1,3 @@
-require('dotenv').config();
 
 module.exports = {
     getSystemStatusService: function(params, res) {
