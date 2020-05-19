@@ -19,7 +19,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.get("/", function(req, res) {
-    res.send("Homebot-business-logic V1.0.0 is healthy");
+    res.send("Homebot-business-logic V1.0 is healthy");
 })
 
 restService.post("/dialog", function(req, res) {
