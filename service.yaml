@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: homebot-bl-service
+spec:
+    selector:
+      app: homebotBLApp
+    type: NodePort
+    ports:
+      - protocol: TCP
+        port: 8000 # [in node] service's <cluster IP: port> => access API
+        targetPort: 8000 # port in container k8s should look for 
+        nodePort: 30000 # [in networok] node's <internal IP: port> => access API
