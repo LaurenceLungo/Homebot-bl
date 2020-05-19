@@ -6,7 +6,11 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY server.js .
+
+COPY intentService ./intentService
+
+COPY ultility ./ultility
 
 ENV GOOGLE_APPLICATION_CREDENTIALS=/usr/src/app/Homebot-3e6752fc210a.json
 
