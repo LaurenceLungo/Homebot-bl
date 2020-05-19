@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 -   name: homebot-bl-container
-                    image: laurencelungo/homebot-bl
+                    image: laurencelungo/homebot-bl:arm32v7
                     ports:
                         -   containerPort: 8000
             imagePullSecrets:
