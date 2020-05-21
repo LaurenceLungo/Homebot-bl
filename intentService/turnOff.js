@@ -10,12 +10,18 @@ module.exports = {
         const [ isHardwareConnected, hardwareDisconnectedMessage ] = await hardwareHealthCheck();
         
         async function axiosTurnOff(channel) {
-            const url = 'https://api.yocto.hk/blynk/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/update/V' + (parseInt(channel)-1).toString()
-            axios.get(url, {
-                params: {
-                    value: '0'
-                }
+            datastore.getSecret('BLYNK_AUTH_TOKEN')
+            .then(BLYNK_AUTH_TOKEN => {
+                const url = 'https://api.yocto.hk/blynk/' + BLYNK_AUTH_TOKEN + '/update/V' + (parseInt(channel)-1).toString()
+                axios.get(url, {
+                    params: {
+                        value: '0'
+                    }
+                })
             })
+            .catch(error => {
+                console.log('-- getSecret error: %s', error);
+            });
         }
 
         if (isHardwareConnected) {

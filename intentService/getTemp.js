@@ -6,12 +6,18 @@ module.exports = {
     getTempService: async function(params, res) {
         
         async function getTempValue() {
-            return axios.get('https://api.yocto.hk/blynk/' + await datastore.getSecret('BLYNK_AUTH_TOKEN') + '/get/V8')
-            .then(response => {
-                return response.data[0];
+            return datastore.getSecret('BLYNK_AUTH_TOKEN')
+            .then(BLYNK_AUTH_TOKEN => {
+                return axios.get('https://api.yocto.hk/blynk/' + BLYNK_AUTH_TOKEN + '/get/V8')
+                .then(response => {
+                    return response.data[0];
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             })
             .catch(error => {
-                console.log(error);
+                console.log('-- getSecret error: %s', error);
             });
         }
 
@@ -20,8 +26,8 @@ module.exports = {
         if (isHardwareConnected) {
             getTempValue().then(temp => {
                 const reply = "Current temperature is " + parseFloat(temp).toFixed(1) + " degree celsius";
-                console.log(reply);
-                
+                console.log('<> rep: %s', reply);
+
                 var speechResponse = {
                     google: {
                     expectUserResponse: true,
@@ -36,7 +42,7 @@ module.exports = {
                     }
                     }
                 };
-            
+
                 return res.json({
                     payload: speechResponse,
                     fulfillmentText: reply,
