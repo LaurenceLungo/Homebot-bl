@@ -3,7 +3,10 @@ const datastore = new Datastore();
 const bluebird = require('bluebird');
 
 let redis = require('redis');
-let client = redis.createClient(6379);
+let client = redis.createClient({
+    host: 'redis',
+    port: 6379
+});
 bluebird.promisifyAll(redis.RedisClient.prototype);
 
 client.on('connect', function() {

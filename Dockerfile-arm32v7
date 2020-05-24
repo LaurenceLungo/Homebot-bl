@@ -8,6 +8,8 @@ RUN npm install
 
 COPY server.js .
 
+COPY Homebot-*.json ./
+
 COPY intentService ./intentService
 
 COPY ultility ./ultility

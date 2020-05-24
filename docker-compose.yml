@@ -1,0 +1,15 @@
+version: '3'
+services:
+  redis:
+    # image: redis
+    image: arm32v7/redis
+    container_name: cache
+
+  homebot-bl:
+    # image: laurencelungo/homebot-bl:x64
+    image: laurencelungo/homebot-bl:arm32v7
+    container_name: homebot-bl
+    depends_on:
+      - redis
+    ports:
+      - 8000:8000
