@@ -4,6 +4,8 @@ services:
     # image: redis
     image: arm32v7/redis
     container_name: cache
+    ports:
+      - 6379
 
   homebot-bl:
     # image: laurencelungo/homebot-bl:x64
