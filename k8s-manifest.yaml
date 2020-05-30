@@ -24,7 +24,7 @@ spec:
         io.kompose.service: redis
     spec:
       containers:
-      - image: arm32v7/redis
+      - image: redis
         imagePullPolicy: ""
         name: cache
         ports:
@@ -81,14 +81,14 @@ status: {}
           io.kompose.service: homebot-bl
       spec:
         containers:
-        - image: laurencelungo/homebot-bl:arm32v7
+        - image: laurencelungo/homebot-bl:latest
           imagePullPolicy: ""
           name: homebot-bl
           ports:
           - containerPort: 8000
           resources: {}
         imagePullSecrets:
-          - name: regcred
+        - name: regcred
         restartPolicy: Always
         serviceAccountName: ""
         volumes: null
