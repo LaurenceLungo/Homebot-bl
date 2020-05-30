@@ -81,7 +81,7 @@ status: {}
           io.kompose.service: homebot-bl
       spec:
         containers:
-        - image: laurencelungo/homebot-bl:latest
+        - image: laurencelungo/homebot-bl:v1.0.1
           imagePullPolicy: ""
           name: homebot-bl
           ports:
