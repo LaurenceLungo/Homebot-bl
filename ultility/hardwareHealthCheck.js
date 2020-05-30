@@ -16,7 +16,7 @@ module.exports = {
 
         return isHardwareConnected().then(status => {
             console.log("<> Homebot-hw connected:", status);
-            const reply = "Sorry, Homebot is currently disconnected :(";
+            const reply = "Nein! Homebot is currently disconnected...";
 
             var speechResponse = {
                 google: {
